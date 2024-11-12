@@ -19,11 +19,13 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
 // Injected IDocumentSession directly in the CommandHandler class using Primary Constructor feature
 // Because IDocumentSession is already an abstraction of database operations.So, we don't need any additional
 // abstractions or unnecessary code like repository pattern.
-internal class CreateProductCommandHandler(IDocumentSession session) 
+internal class CreateProductCommandHandler
+    (IDocumentSession session, ILogger<CreateProductCommandHandler> logger) 
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
+        logger.LogInformation($"CreateProductCommandHandler.Handle called with {command}");
         // Create Product entity from the command object
         var product = new Product
         {
