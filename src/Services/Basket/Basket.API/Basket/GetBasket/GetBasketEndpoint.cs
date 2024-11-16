@@ -1,6 +1,5 @@
-﻿namespace Basket.API.Basket.GetBasket
+﻿namespace Basket.API.Basket.GetBasket;
+
+public class GetBasketEndpoint
 {
-    public class GetBasketEndpoint
-    {
-    }
 }
