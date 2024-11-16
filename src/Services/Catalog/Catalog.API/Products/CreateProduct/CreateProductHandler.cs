@@ -20,12 +20,11 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
 // Because IDocumentSession is already an abstraction of database operations.So, we don't need any additional
 // abstractions or unnecessary code like repository pattern.
 internal class CreateProductCommandHandler
-    (IDocumentSession session, ILogger<CreateProductCommandHandler> logger) 
+    (IDocumentSession session) 
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
-        logger.LogInformation($"CreateProductCommandHandler.Handle called with {command}");
         // Create Product entity from the command object
         var product = new Product
         {
