@@ -2,7 +2,7 @@
 
 public class ShoppingCart
 {
-    public string UserName { get; set; } = default!;
+    public string UserName { get; set; } = default!; // will be our primary key in document table
     public List<ShoppingCartItem> Items { get; set; } = new();
     public decimal TotalPrice => Items.Sum(x => x.Price * x.Quantity);
 
