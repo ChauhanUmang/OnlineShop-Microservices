@@ -9,6 +9,11 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 
+builder.Services.AddMarten(opts =>
+{
+    opts.Connection(builder.Configuration.GetConnectionString("DatabaseConnectionString")!);
+}).UseLightweightSessions();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
