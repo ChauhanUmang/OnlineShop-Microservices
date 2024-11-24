@@ -1,19 +1,23 @@
 ﻿namespace Basket.API.Data;
 
-public class CachedBasketRepository : IBasketRepository
+//Basically, we will implement two patterns here: Proxy and Decorator.
+// Proxy Pattern: CachedBasketRepository acts a proxy and forwards the requests to the underlying BasketRepository
+
+public class CachedBasketRepository (IBasketRepository repository)
+    : IBasketRepository
 {
-    public Task<ShoppingCart> GetBasket(string userName, CancellationToken cancellationToken = default)
+    public async Task<ShoppingCart> GetBasket(string userName, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await repository.GetBasket(userName, cancellationToken);
     }
 
-    public Task<ShoppingCart> StoreBasket(ShoppingCart basket, CancellationToken cancellationToken = default)
+    public async Task<ShoppingCart> StoreBasket(ShoppingCart basket, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await repository.StoreBasket(basket, cancellationToken);
     }
 
-    public Task<bool> DeleteBasket(string userName, CancellationToken cancellationToken = default)
+    public async Task<bool> DeleteBasket(string userName, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await repository.DeleteBasket(userName, cancellationToken);
     }
 }
