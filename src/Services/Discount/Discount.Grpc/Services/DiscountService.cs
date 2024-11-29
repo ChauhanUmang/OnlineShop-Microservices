@@ -10,6 +10,7 @@ public class DiscountService : DiscountProtoService.DiscountProtoServiceBase
 {
     public override Task<CouponModel> GetDiscount(GetDiscountRequest request, ServerCallContext context)
     {
+        // TODO : Get Discount from database
         return base.GetDiscount(request, context);
     }
 
