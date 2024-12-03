@@ -17,6 +17,8 @@ internal class StoreBasketCommandHandler (IBasketRepository basketRepository)
 {
     public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
     {
+        //Todo: calculate latest prices using discount grpc 
+
         ShoppingCart cart = command.Cart;
         await basketRepository.StoreBasket(cart, cancellationToken);
 
