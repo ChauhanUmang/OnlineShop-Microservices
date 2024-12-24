@@ -18,11 +18,11 @@ public class Order : Aggregate<OrderId>
         private set { }
     }
 
-    public static Order Create(OrderId orderId, CustomerId customerId, OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment)
+    public static Order Create(OrderId id, CustomerId customerId, OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment)
     {
         var order = new Order
         {
-            Id = orderId,
+            Id = id,
             CustomerId = customerId,
             OrderName = orderName,
             ShippingAddress = shippingAddress,
@@ -35,9 +35,9 @@ public class Order : Aggregate<OrderId>
         return order;
     }
 
-    public void Update(OrderName order, Address shippingAddress, Address billingAddress, Payment payment, OrderStatus status)
+    public void Update(OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment, OrderStatus status)
     {
-        OrderName = OrderName;
+        OrderName = orderName;
         ShippingAddress = shippingAddress;
         BillingAddress = billingAddress;
         Payment = payment; 
