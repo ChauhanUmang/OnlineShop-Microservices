@@ -1,0 +1,41 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Build .NET CI
+
+on:
+  push:
+    branches: 
+      - feature*
+      - master
+  pull_request:
+    branches: 
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout repository
+    - uses: actions/checkout@v4
+
+    # Step 2: Setup .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    # Step 3: Restore dependencies    
+    - name: Restore dependencies
+      run: dotnet restore ./src/onlineShopMicroservices.sln
+
+    # Step 4: Build the solution
+    - name: Build
+      run: dotnet build ./src/onlineShopMicroservices.sln --configuration Release --no-restore
+
+    # Step 5: Run tests (add test projects when ready)
+    #- name: Run Tests
+    #  run: dotnet test ./src/onlineShopMicroservices.sln --no-build --verbosity normal
